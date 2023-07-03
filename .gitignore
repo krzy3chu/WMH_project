@@ -1,0 +1,5 @@
+# Python virtual environment
+*venv/
+
+# Big data directories
+data/
