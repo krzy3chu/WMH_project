@@ -7,5 +7,5 @@ __pycache__/
 # Big data directories
 data/
 
-# Lightning logs
-lightning_logs/
+# Lightning neptune
+.neptune/

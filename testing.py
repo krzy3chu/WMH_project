@@ -1,22 +1,22 @@
 import torch
 import cv2
-
-from pathlib import Path
-from training import segmentation_module, data_module
+import numpy as np
+from training import segmentation_module, data_module, model_name
 
 
 idx = 34
-model_checkpoint = Path("lightning_logs/version_5/checkpoints/epoch=0-step=148.ckpt")
 
 data_module.setup('test')
 image, mask = data_module.val_dataset[idx]
 
-model = segmentation_module.load_from_checkpoint(model_checkpoint)
+model = segmentation_module
+model.load_state_dict(torch.load(model_name))
 model.eval().to('cpu')
 
 with torch.no_grad():
     result = torch.sigmoid(model(image[None, ...]))
 
+print(np.amax(result.numpy()))
 # THRESHOLD = 0.5
 # result[result<THRESHOLD] = 0
 # result[result>=THRESHOLD] = 1
