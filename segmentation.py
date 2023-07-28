@@ -13,6 +13,7 @@ from albumentations.pytorch.transforms import ToTensorV2
 from sklearn.model_selection import train_test_split
 from torchmetrics import MetricCollection
 from torchmetrics.classification import BinaryAccuracy, BinaryRecall, BinaryPrecision, BinaryF1Score
+from monai.losses.dice import DiceLoss
 
 
 class SegmentationDataset(Dataset):
@@ -116,7 +117,8 @@ class SegmentationModule(pl.LightningModule):
         super().__init__()
 
         self.network = smp.Unet('resnet18')
-        self.loss_function = nn.BCEWithLogitsLoss()
+        # self.loss_function = nn.BCEWithLogitsLoss()
+        self.loss_function = DiceLoss()
 
         metrics = MetricCollection([
             BinaryAccuracy(),

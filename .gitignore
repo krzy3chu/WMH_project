@@ -9,3 +9,6 @@ data/
 
 # Lightning neptune
 .neptune/
+
+# Trained model
+WMH_model

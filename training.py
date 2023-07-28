@@ -2,6 +2,7 @@ from segmentation import *
 from neptune_api import API_TOKEN
 from pytorch_lightning.loggers import NeptuneLogger
 
+
 database = Path('./data/processed')
 model_name = Path('./WMH_model')
 
